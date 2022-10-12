@@ -17,3 +17,29 @@ classifier= ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/
 function modelLoaded() {
     console.log("model loaded");
 }
+function check() {
+    img= document.getElementById("captured_image");
+    classifier.classify(img, gotResult);
+}
+function gotResult(error, results) {
+    if(error) {
+        console.error(error);
+    }
+    else {
+        console.log(results);
+        document.getElementById("nome_emoji").innerHTML= results[0].label;
+        prediction= results[0].label;
+        if(results[0].label == "ok") {
+            document.getElementById("emoji").innerHTML= "👌🏻";
+        }
+        if(results[0].label == "rock") {
+            document.getElementById("emoji").innerHTML= "🤘🏻";
+        }
+        if(results[0].label == "sorte") {
+            document.getElementById("emoji").innerHTML= "🤞🏻";
+        }
+        if(results[0].label == "to d boa") {
+            document.getElementById("emoji").innerHTML= "🤙🏻";
+        }
+    }
+}
